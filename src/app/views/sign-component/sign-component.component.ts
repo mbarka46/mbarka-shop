@@ -82,8 +82,8 @@ export class SignComponentComponent implements OnInit {
 
   confirmationSignUp() {
     this._snackBar.open(
-      'Your profile was created',
-      'Dismiss',
+      'Votre profil a été créé',
+      'rejeter',
 
       {
         duration: 5000,
@@ -98,8 +98,8 @@ export class SignComponentComponent implements OnInit {
   }
   errorSignUp() {
     this._snackBar.open(
-      'This email is being used by other user',
-      'I got it',
+      'Cet email est utilisé par d’autres utilisateurs',
+      'je compris',
 
       {
         duration: 5000,
@@ -136,8 +136,8 @@ export class SignComponentComponent implements OnInit {
 
   snackBarErrorLogin() {
     this._snackBar.open(
-      'Email or password incorrect',
-      'I got it',
+      'Email ou mot de passe incorrect',
+      'je compris',
 
       {
         duration: 5000,
@@ -158,7 +158,7 @@ export class SignComponentComponent implements OnInit {
 
 
   forgotPassword() {
-    
+
     this.isLoading = true;
     this.emailDTO.email = this.loginForm.value.email;
     this.signService.forgotPassword(this.emailDTO).subscribe(() => {
@@ -167,11 +167,11 @@ export class SignComponentComponent implements OnInit {
     })
   }
 
- 
+
 
   snackBarEmailSent() {
     this._snackBar.open(
-      'A new password is being sent to your email. Please, check your mail out in a few seconds',
+      'Un nouveau mot de passe est envoyé à votre courriel',
       'I got it',
 
       {
@@ -185,3 +185,4 @@ export class SignComponentComponent implements OnInit {
     this.storage.logout();
   }
 }
+
