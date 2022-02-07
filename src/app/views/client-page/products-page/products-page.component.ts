@@ -63,7 +63,7 @@ export class ProductsPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.productService.buyProduct(product.id).subscribe(() => {
-          this.showSnackBaProductBought(product.name, 'Dismiss');
+          this.showSnackBaProductBought(product.name, 'rejeter');
           this._getProducts();
         });
       }
@@ -72,10 +72,10 @@ export class ProductsPageComponent implements OnInit {
 
   showSnackBaProductBought(productName: string, action: string) {
     this._snackBar.open(
-      'You have bought the product |' +
+      'Vous avez acheté le produit |' +
         productName +
         '|' +
-        " We're sending a confirmation email to your inbox",
+        " Nous envoyons un message de confirmation à votre email ",
       action,
 
       {
@@ -91,13 +91,13 @@ export class ProductsPageComponent implements OnInit {
   addProductWishlist(product: Product) {
     this.wishlistService.addProductInWishlist(product.id).subscribe(
       () => {
-        this.showSnackBarProductSetAsWished(product, 'Undo');
+        this.showSnackBarProductSetAsWished(product, 'annuler');
       },
       (err) => {
         if (err.status === 400) {
           this.showSnackBarYouHaveAlreadySetThisProductAsWished(
             product.name,
-            'Dismiss'
+            'rejeter'
           );
         }
       }
@@ -109,7 +109,7 @@ export class ProductsPageComponent implements OnInit {
     action: string
   ) {
     this._snackBar.open(
-      'The product: |' + productName + '| is already in your wishlist ',
+      'The produits |' + productName + '| est déjà dans votre liste de favoris',
       action,
 
       {
@@ -121,7 +121,7 @@ export class ProductsPageComponent implements OnInit {
   // parametro com o produto para mostrar o nome
   showSnackBarProductSetAsWished(product: Product, action: string) {
     let snackBarRef = this._snackBar.open(
-      'You have added the product |' + product.name + '| in your wishlist ',
+      'Vous avez ajouté le produit |' + product.name + '| dans les favoris ',
       action,
 
       {
