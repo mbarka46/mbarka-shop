@@ -18,7 +18,7 @@ export class ProfilePageComponent implements OnInit {
   client = {} as Client;
   updatedClient = {} as UpdatedUser;
 
-  
+
 
   formGroup = new FormGroup({
     name: new FormControl('' ) ,
@@ -30,7 +30,7 @@ export class ProfilePageComponent implements OnInit {
   ngOnInit(): void {
     this.client = this.clientService.client;
     this._populateForm();
-   
+
   }
   _populateForm(){
     this.formGroup.patchValue({
@@ -56,8 +56,8 @@ export class ProfilePageComponent implements OnInit {
 
   confirmationEdit() {
     this._snackBar.open(
-      'Your profile was edited',
-      'Dismiss',
+      'Votre profil a été modifié',
+      'annuler',
 
       {
         duration: 5000,
@@ -66,11 +66,11 @@ export class ProfilePageComponent implements OnInit {
     );
   }
 
-  
+
   errorEdit() {
     this._snackBar.open(
-      'This email is already being used',
-      'Dismiss',
+      'Cet email est deja utilise',
+      'annuler',
 
       {
         duration: 5000,
@@ -79,10 +79,10 @@ export class ProfilePageComponent implements OnInit {
     );
   }
 
-  
 
-  
 
- 
+
+
+
 
 }
