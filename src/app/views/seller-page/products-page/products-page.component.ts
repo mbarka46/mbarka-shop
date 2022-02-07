@@ -37,34 +37,34 @@ export class ProductsPageComponentSeller implements OnInit {
       case 'price':
         this._orderByPrice();
         break;
-      
+
       case 'name':
         this._orderByName();
         break;
-      
+
       case 'unsold':
         this._orderByUnsold();
         break;
-    
+
     }
 
-  
+
   }
   _orderByPrice(){
-    this.products = this.products.sort((a,b) => (a.price > b.price) ? -1 : ((b.price > a.price) ? 1 : 0)); 
+    this.products = this.products.sort((a,b) => (a.price > b.price) ? -1 : ((b.price > a.price) ? 1 : 0));
   }
 
   _orderByName(){
-    this.products = this.products.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)); 
+    this.products = this.products.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 
   }
 
-  
+
   _orderByUnsold(){
-    this.products = this.products.sort((a,b) => (a.hasBeenSold > b.hasBeenSold) ? -1 : ((b.hasBeenSold > a.hasBeenSold) ? 1 : 0)); 
+    this.products = this.products.sort((a,b) => (a.hasBeenSold > b.hasBeenSold) ? -1 : ((b.hasBeenSold > a.hasBeenSold) ? 1 : 0));
 
   }
-  
+
 
   openSaveDialog(){
     const dialogRef = this.dialog.open(CreateProductDialogComponent);
@@ -72,7 +72,7 @@ export class ProductsPageComponentSeller implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this._getOwnProducts();
-        this.showSnackBarProductCreated('Dismiss');
+        this.showSnackBarProductCreated('rejeter');
       }
     });
   }
@@ -84,7 +84,7 @@ export class ProductsPageComponentSeller implements OnInit {
         this.productService.removeProduct(product.id).subscribe(() =>{
 
           this._getOwnProducts();
-          this.showSnackBarProductRemoved(product, 'Undo');
+          this.showSnackBarProductRemoved(product, 'Annuler ');
         })
       }
     });
@@ -96,7 +96,7 @@ export class ProductsPageComponentSeller implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this._getOwnProducts();
-        this.showSnackBarProductEdited(product, 'Undo');
+        this.showSnackBarProductEdited(product, 'rejeter');
       }
     }, (err)=>{
         console.log('error' +err);
@@ -105,7 +105,7 @@ export class ProductsPageComponentSeller implements OnInit {
 
   showSnackBarProductCreated(action: string) {
     this._snackBar.open(
-      'You have created a new product',
+      'vous avez ajouter un nouveau produit',
       action,
 
       {
@@ -116,7 +116,7 @@ export class ProductsPageComponentSeller implements OnInit {
 
   showSnackBarProductEdited(product: Product, action: string) {
     let snackBarRef = this._snackBar.open(
-      'You have edited the product |' + product.name + '|',
+      'vous avez ajouter le produit |' + product.name + '|',
       action,
 
       {
@@ -145,14 +145,14 @@ export class ProductsPageComponentSeller implements OnInit {
 
 
     this.productService.createProduct(this.productDTO).subscribe(() =>{
-      this.showSnackBarProductCreated('Dismiss');
+      this.showSnackBarProductCreated('rejeter');
       this._getOwnProducts();
     })
   }
 
   showSnackBarProductRemoved(product: Product, action: string) {
     let snackBarRef = this._snackBar.open(
-      'You have removed the product |' + product.name + '|',
+      'Vous avez retiré le produit |' + product.name + '|',
       action,
 
       {
@@ -164,7 +164,7 @@ export class ProductsPageComponentSeller implements OnInit {
 
   showSnackBarProductHasBeenSold(action: string) {
     this._snackBar.open(
-      'You can do that because the product has already been sold',
+      'Vous pouvez le faire parce que le produit a déjà été vendu',
       action,
 
       {
@@ -174,3 +174,4 @@ export class ProductsPageComponentSeller implements OnInit {
   }
 
 }
+
